@@ -1,5 +1,5 @@
 # mysql
-Ò»¡¤È«²éÑ¯
+ä¸€Â·å…¨æŸ¥è¯¢
 mysql> select * from shoppiing8;
 +----+--------+-----+----------+-------+----------------+----------+------+
 | id | name   | num | discount | xihao | 11wish         | isDelete | isOK |
@@ -8,7 +8,7 @@ mysql> select * from shoppiing8;
 |  2 | waitao |   1 | 1        | no    | none           |        0 |    0 |
 |  3 | kuzi   |   3 | 1        | yes   | buy basketball |        1 |    0 |
 +----+--------+-----+----------+-------+----------------+----------+------+
-¶þ¡¤²éÑ¯²»ÖØ¸´µÄ¼ÇÂ¼
+äºŒÂ·æŸ¥è¯¢ä¸é‡å¤çš„è®°å½•
 mysql> select distinct discount from shopping8;
 +----------+
 | discount |
@@ -17,7 +17,7 @@ mysql> select distinct discount from shopping8;
 | 1        |
 +----------+
 2 rows in set (0.00 sec)
-Èý¡¤¶àÌõ¼þ²éÑ¯
+ä¸‰Â·å¤šæ¡ä»¶æŸ¥è¯¢
 mysql> select * from shopping8 where isDelete=1;
 +----+------+-----+----------+-------+----------------+----------+------+
 | id | name | num | discount | xihao | 11wish         | isDelete | isOK |
@@ -43,8 +43,8 @@ mysql> select * from shopping8 where isDelete!=1 and isOK=0;
 |  2 | waitao |   1 | 1        | no    | none      |        0 |    0 |
 +----+--------+-----+----------+-------+-----------+----------+------+
 2 rows in set (0.00 sec)
-ËÄ¡¤ÅÅÐòºÍÏÞÖÆ
-£¨1£©ÉýÐò
+å››Â·æŽ’åºå’Œé™åˆ¶
+ï¼ˆ1ï¼‰å‡åº
 mysql> select num from shopping8 order by num;
 +-----+
 | num |
@@ -54,7 +54,7 @@ mysql> select num from shopping8 order by num;
 |   3 |
 +-----+
 3 rows in set (0.00 sec)
-£¨2£©½µÐò
+ï¼ˆ2ï¼‰é™åº
 mysql> select num from shopping8 order by num desc;
 +-----+
 | num |
@@ -64,7 +64,7 @@ mysql> select num from shopping8 order by num desc;
 |   1 |
 +-----+
 3 rows in set (0.00 sec)
-£¨3£©ÏÞÖÆ
+ï¼ˆ3ï¼‰é™åˆ¶
 mysql> select num from shopping8 order by num limit 3;
 +-----+
 | num |
@@ -83,7 +83,7 @@ mysql> select num from shopping8 order by num limit 1;
 +-----+
 1 row in set (0.00 sec)
 
-mysql> select num from shopping8 order by num limit 2,1£»
+mysql> select num from shopping8 order by num limit 2,1ï¼›
 +-----+
 | num |
 +-----+
@@ -99,7 +99,7 @@ mysql> select num from shopping8 order by num limit 1,2;
 |   3 |
 +-----+
 2 rows in set (0.00 sec)
-Îå¡¤¾ÛºÏ
+äº”Â·èšåˆ
 mysql> select sum(num) from shopping8;
 +----------+
 | sum(num) |
@@ -164,8 +164,8 @@ mysql> select num,isOK,sum(num),count(isOK) from shopping8 where num>1 group by 
 | NULL | NULL |        5 |           2 |
 +-----+------+----------+-------------+
 5 rows in set (0.00 sec)
-Áù¡¤±íÁ¬½Ó
-£¨1£©ÄÚÁ¬½Ó
+å…­Â·è¡¨è¿žæŽ¥
+ï¼ˆ1ï¼‰å†…è¿žæŽ¥
 mysql> select * from shopping;
 +----+---------+------+
 | id | name    | isOK |
@@ -199,7 +199,7 @@ mysql> select * from shopping8,shopping where shopping8.isOK=shopping.isOK;
 |  3 | kuzi   |   3 | 1        | yes   | buy basketball |        1 |    0 |  8 | warn200 |    0 |
 +----+--------+-----+----------+-------+----------------+----------+------+----+---------+------+
 9 rows in set (0.00 sec)
-£¨2£©×óÁ¬½Ó
+ï¼ˆ2ï¼‰å·¦è¿žæŽ¥
 mysql> select * from shopping8 left join shopping on shopping8.id=shopping.id;
 +----+--------+-----+----------+-------+----------------+----------+------+------+------+------+
 | id | name   | num | discount | xihao | 11wish         | isDelete | isOK | id   | name | isOK |
@@ -209,7 +209,7 @@ mysql> select * from shopping8 left join shopping on shopping8.id=shopping.id;
 |  3 | kuzi   |   3 | 1        | yes   | buy basketball |        1 |    0 | NULL | NULL | NULL |
 +----+--------+-----+----------+-------+----------------+----------+------+------+------+------+
 3 rows in set (0.00 sec)
-£¨3£©ÓÒÁ¬½Ó
+ï¼ˆ3ï¼‰å³è¿žæŽ¥
 mysql> select * from shopping8 right join shopping on shopping8.id=shopping.id;
 +------+------+------+----------+-------+--------+----------+------+----+---------+------+
 | id   | name | num  | discount | xihao | 11wish | isDelete | isOK | id | name    | isOK |
@@ -227,7 +227,7 @@ mysql> select * from shopping right join shopping8 on shopping.id=shopping8.id;
 | NULL | NULL | NULL |  2 | waitao |   1 | 1        | no    | none           |        0 |    0 |
 | NULL | NULL | NULL |  3 | kuzi   |   3 | 1        | yes   | buy basketball |        1 |    0 |
 +------+------+------+----+--------+-----+----------+-------+----------------+----------+------+
-£¨4£©×Ó²éÑ¯
+ï¼ˆ4ï¼‰å­æŸ¥è¯¢
 (1)IN
 mysql> select * from shopping;
 +----+---------+------+
@@ -255,7 +255,7 @@ select * from shopping where shopping.isOK in (select isOK from shopping8);
 |  8 | warn200 |    0 |
 +----+---------+------+
 3 rows in set (0.00 sec)
-£¨2£©EXISTS
+ï¼ˆ2ï¼‰EXISTS
 mysql> select * from shopping where exists(select isOK from shopping8 where isOK=0);
 +----+---------+------+
 | id | name    | isOK |
@@ -265,7 +265,7 @@ mysql> select * from shopping where exists(select isOK from shopping8 where isOK
 |  8 | warn200 |    0 |
 +----+---------+------+
 3 rows in set (0.00 sec)
-Æß¡¤ºÏ²¢Á½¸ö²»Í¬µÄ×Ö¶Î£¨Ò²¿ÉÒÔÊÇ²»Í¬±íµÄÏàÍ¬×Ö¶Î)
+ä¸ƒÂ·åˆå¹¶ä¸¤ä¸ªä¸åŒçš„å­—æ®µï¼ˆä¹Ÿå¯ä»¥æ˜¯ä¸åŒè¡¨çš„ç›¸åŒå­—æ®µ)
 mysql> select id from shopping union all select name from shopping8;
 +--------+
 | id     |
@@ -291,4 +291,4 @@ mysql> select name from shopping union all select name from shopping8;
 | waitao  |
 +---------+
 6 rows in set (0.00 sec)
-   ¡ª¡ª¡ª¡ªGOOD LUCK!
+   â€”â€”â€”â€”GOOD LUCK!
