@@ -1,0 +1,61 @@
+C:\Windows\system32>mysql -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.12 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use warn;
+Database changed
+mysql> create table SC(
+    -> id int primary key auto_increment unique,
+    -> SCWname varchar(30) not null unique,
+    -> SC varchar(1) not null default 0);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> desc SC;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| SCWname | varchar(30) | NO   | UNI | NULL    |                |
+| SC      | varchar(1)  | NO   |     | 0       |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.02 sec)
+
+mysql> insert into SC(SCWname) values('AJ1'),('adidas'),('puma'),('kapa');
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from SC;
++----+---------+----+
+| id | SCWname | SC |
++----+---------+----+
+|  1 | AJ1     | 0  |
+|  2 | adidas  | 0  |
+|  3 | puma    | 0  |
+|  4 | kapa    | 0  |
++----+---------+----+
+4 rows in set (0.00 sec)
+
+mysql> update SC set SC=1 where id=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from SC;
++----+---------+----+
+| id | SCWname | SC |
++----+---------+----+
+|  1 | AJ1     | 1  |
+|  2 | adidas  | 0  |
+|  3 | puma    | 0  |
+|  4 | kapa    | 0  |
++----+---------+----+
+4 rows in set (0.00 sec)
