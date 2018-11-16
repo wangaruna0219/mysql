@@ -1,0 +1,91 @@
+use warn;
+
+-- 创建陌陌表（为主表）
+create table momo(
+
+momo_id smallint unsigned auto_increment not null primary key unique,
+
+momo_name varchar(40) not null,
+
+momo_gender varchar(1) not null,
+
+momo_phone int(11) unique
+
+
+)engine=innodb default charset=utf8;
+
+use warn;
+
+-- 创建喜爱的人的表（为从表）
+create table dear(
+
+dear_id smallint unsigned not null auto_increment primary key unique,
+
+dear_name varchar(40) not null,
+momo_id smallint unsigned not null,
+
+key `idx_fk_momo_id` (momo_id),
+
+constraint `fk_dear_momo` foreign key(momo_id)
+
+references momo(momo_id)
+on delete restrict on update cascade
+
+)engine=innodb default charset=utf8;
+
+use warn;
+
+insert into momo(momo_name,momo_gender,momo_phone)
+
+values('ouerpingfan','0',123456789),('ouerhutu','1',234567891),
+
+('oueryouqu','0',345678910),('ouergaoleng','1',456789101);
+mysql> select * from momo;
++---------+-------------+-------------+------------+
+| momo_id | momo_name   | momo_gender | momo_phone |
++---------+-------------+-------------+------------+
+|       5 | ouerpingfan | 0           |  123456789 |
+|       6 | ouerhutu    | 1           |  234567891 |
+|       7 | oueryouqu   | 0           |  345678910 |
+|       8 | ouergaoleng | 1           |  456789101 |
++---------+-------------+-------------+------------+
+4 rows in set (0.00 sec)
+insert into dear(dear_name,momo_id)
+values('taosiqi',5),('tsq',5),('taosq',6),('tsiqi',7),('wodetsq',8);
+mysql> select * from dear;
++---------+-----------+---------+
+| dear_id | dear_name | momo_id |
++---------+-----------+---------+
+|       1 | taosiqi   |       5 |
+|       2 | tsq       |       5 |
+|       3 | taosq     |       6 |
+|       4 | tsiqi     |       7 |
+|       5 | wodetsq   |       8 |
++---------+-----------+---------+
+
+use warn;
+
+delimiter $$
+
+create procedure find_my_dear(in momoName varchar(40),out dearName varchar(40))
+
+reads sql data
+
+begin
+
+select dear_name from dear where dear.momo_id in
+(select momo_id from momo where dear_=momoName);
+
+select dear_name into dearName;
+
+end $$
+
+delimiter ;
+
+@searchrest
+
+call find_my_dear('ouerpinfan',@searchrest);
+
+select @searchrest;
+5 rows in set (0.00 sec)
+
